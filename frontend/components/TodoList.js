@@ -3,7 +3,7 @@ import Todo from './Todo';
 
 export default class TodoList extends React.Component {
   render() {
-    const { taskList } = this.props;
+    const { taskList, toggleTask } = this.props;
     
 
     return (
@@ -12,6 +12,7 @@ export default class TodoList extends React.Component {
           <Todo 
             key={task.id}
             task={task}
+            toggleTask={toggleTask}
           />
         ))}
       </div>

@@ -38,11 +38,27 @@ export default class App extends React.Component {
     .catch(err => console.log(err))
   }
 
+  toggleTask = taskID => {
+    this.setState({
+      taskList: this.state.taskList.map(task => {
+        if (taskID === task.id) {
+          return {
+            ...task, completed: !task.completed
+          }
+        }
+        return task
+      })
+    })
+  }
+
 
   render() {
     return (
       <div className="App">
-        <TodoList taskList={this.state.taskList} />
+        <TodoList 
+          taskList={this.state.taskList}
+          toggleTask={this.toggleTask}
+          />
         <Form addTask={this.addTask}/>
         <button className="clearBtn">Clear Completed</button>
       </div>
