@@ -56,6 +56,13 @@ export default class App extends React.Component {
   }
 
 
+  clearCompleted = () => {
+    this.setState({
+      taskList: this.state.taskList.filter(task => !task.completed)
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -64,7 +71,7 @@ export default class App extends React.Component {
           toggleTask={this.toggleTask}
           />
         <Form addTask={this.addTask}/>
-        <button className="clearBtn">Clear Completed</button>
+        <button className="clearBtn" onClick={() => {this.clearCompleted()}}>Clear Completed</button>
       </div>
     )
   }
