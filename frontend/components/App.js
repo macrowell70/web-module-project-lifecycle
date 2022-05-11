@@ -39,16 +39,20 @@ export default class App extends React.Component {
   }
 
   toggleTask = taskID => {
-    this.setState({
-      taskList: this.state.taskList.map(task => {
-        if (taskID === task.id) {
-          return {
-            ...task, completed: !task.completed
-          }
-        }
-        return task
+      axios.patch(`${URL}/${taskID}`, {completed: true})
+      .then(() => {
+        this.setState({
+          taskList: this.state.taskList.map(task => {
+            if (taskID === task.id) {
+              return {
+                ...task, completed: !task.completed
+              }
+            }
+            return task
+          })
+        })
       })
-    })
+      .catch(err => console.log(err))
   }
 
 
